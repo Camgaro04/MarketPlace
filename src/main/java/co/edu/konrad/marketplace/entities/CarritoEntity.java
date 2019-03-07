@@ -6,17 +6,38 @@
 package co.edu.konrad.marketplace.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author cgarcia
  */
+@Entity
 public class CarritoEntity implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idCarrito;
-    private int cliente;
-    private int producto;
+    
+    
+    @JoinColumn(name = "cliente")
+    @ManyToOne
+    private ClienteEntity cliente;
+    
+    @JoinColumn(name = "producto")
+    @ManyToOne
+    private ProductoEntity producto;
+    
+    @Column(name = "cantidad")
     private int cantidad;
+    
+    @Column(name = "valor_total")
     private double valorTotal;
 
     
@@ -41,28 +62,28 @@ public class CarritoEntity implements Serializable {
     /**
      * @return the cliente
      */
-    public int getCliente() {
+    public ClienteEntity getCliente() {
         return cliente;
     }
 
     /**
      * @param cliente the cliente to set
      */
-    public void setCliente(int cliente) {
+    public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
 
     /**
      * @return the producto
      */
-    public int getProducto() {
+    public ProductoEntity getProducto() {
         return producto;
     }
 
     /**
      * @param producto the producto to set
      */
-    public void setProducto(int producto) {
+    public void setProducto(ProductoEntity producto) {
         this.producto = producto;
     }
 

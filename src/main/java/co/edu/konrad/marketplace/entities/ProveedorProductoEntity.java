@@ -6,16 +6,33 @@
 package co.edu.konrad.marketplace.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author cgarcia
  */
+@Entity
 public class ProveedorProductoEntity implements Serializable{
     
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProv;
-    private int proveedor;
-    private int producto;
+    
+    
+    @JoinColumn(name = "proveedor")
+    @ManyToOne
+    private ProveedorEntity proveedor;
+    
+    @JoinColumn(name = "producto")
+    @ManyToOne
+    private ProductoEntity producto;
     
     
     public ProveedorProductoEntity(){
@@ -38,28 +55,28 @@ public class ProveedorProductoEntity implements Serializable{
     /**
      * @return the proveedor
      */
-    public int getProveedor() {
+    public ProveedorEntity getProveedor() {
         return proveedor;
     }
 
     /**
      * @param proveedor the proveedor to set
      */
-    public void setProveedor(int proveedor) {
+    public void setProveedor(ProveedorEntity proveedor) {
         this.proveedor = proveedor;
     }
 
     /**
      * @return the producto
      */
-    public int getProducto() {
+    public ProductoEntity getProducto() {
         return producto;
     }
 
     /**
      * @param producto the producto to set
      */
-    public void setProducto(int producto) {
+    public void setProducto(ProductoEntity producto) {
         this.producto = producto;
     }
     

@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -23,8 +25,9 @@ public class ProveedorEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idProveedor;
     
-    @Column(name = "tipo_documento")
-    private int tipoDocumento;
+    @JoinColumn(name = "tipo_documento")
+    @ManyToOne
+    private TipoDocumentoEntity tipoDocumento;
     
     @Column(name = "nombre_provedor")
     private String nombreProveedor;
@@ -50,14 +53,14 @@ public class ProveedorEntity implements Serializable {
     /**
      * @return the tipoDocumento
      */
-    public int getTipoDocumento() {
+    public TipoDocumentoEntity getTipoDocumento() {
         return tipoDocumento;
     }
 
     /**
      * @param tipoDocumento the tipoDocumento to set
      */
-    public void setTipoDocumento(int tipoDocumento) {
+    public void setTipoDocumento(TipoDocumentoEntity tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 

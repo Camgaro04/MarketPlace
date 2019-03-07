@@ -7,17 +7,38 @@ package co.edu.konrad.marketplace.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author cgarcia
  */
+
+@Entity
 public class FacturaEntity implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idFactura;
-    private int carrito;
+    
+    @JoinColumn(name = "carrito")
+    @ManyToOne
+    private CarritoEntity carrito;
+    
+    @Column(name = "total_factura")
     private int totalFactura;
+    
+    
+    @Column(name = "fecha")
     private Date fecha;
+    
+    @Column(name = "medio_pago")
     private String medioPago;
     
     public FacturaEntity(){
@@ -41,14 +62,14 @@ public class FacturaEntity implements Serializable {
     /**
      * @return the carrito
      */
-    public int getCarrito() {
+    public CarritoEntity getCarrito() {
         return carrito;
     }
 
     /**
      * @param carrito the carrito to set
      */
-    public void setCarrito(int carrito) {
+    public void setCarrito(CarritoEntity carrito) {
         this.carrito = carrito;
     }
 
